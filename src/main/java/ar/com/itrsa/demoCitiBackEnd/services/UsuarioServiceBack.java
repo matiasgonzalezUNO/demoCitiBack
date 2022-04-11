@@ -6,10 +6,8 @@ import ar.com.itrsa.demoCitiBackEnd.models.TipoDocumentoBackModel;
 import ar.com.itrsa.demoCitiBackEnd.models.UsuarioBackModel;
 import ar.com.itrsa.demoCitiBackEnd.repositories.TipoDocumentoBackRepository;
 import ar.com.itrsa.demoCitiBackEnd.repositories.UsuarioBackRepository;
-
 import java.util.ArrayList;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

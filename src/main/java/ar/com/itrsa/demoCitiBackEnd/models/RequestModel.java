@@ -9,13 +9,13 @@ public class RequestModel implements Serializable {
     private Integer numeroDocumento;
     
 	public Integer getTipoDocumento() {
-		return tipoDocumento;
+        return tipoDocumento;
 	}
 	public void setTipoDocumento(Integer tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
+        this.tipoDocumento = tipoDocumento;
 	}
 	public Integer getNumeroDocumento() {
-		return numeroDocumento;
+        return numeroDocumento;
 	}
 	public void setNumeroDocumento(Integer numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;

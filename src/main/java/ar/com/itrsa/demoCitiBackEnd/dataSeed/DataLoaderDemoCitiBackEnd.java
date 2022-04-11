@@ -3,7 +3,6 @@ package ar.com.itrsa.demoCitiBackEnd.dataSeed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import ar.com.itrsa.demoCitiBackEnd.models.TipoDocumentoBackModel;
 import ar.com.itrsa.demoCitiBackEnd.models.UsuarioBackModel;
 import ar.com.itrsa.demoCitiBackEnd.repositories.TipoDocumentoBackRepository;
