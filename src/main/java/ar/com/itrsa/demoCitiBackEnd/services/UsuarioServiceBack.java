@@ -1,5 +1,6 @@
 package ar.com.itrsa.demoCitiBackEnd.services;
 
+import ar.com.itrsa.demoCitiBackEnd.exception.BadRequestException;
 import ar.com.itrsa.demoCitiBackEnd.models.RequestModel;
 import ar.com.itrsa.demoCitiBackEnd.models.ResponseModel;
 import ar.com.itrsa.demoCitiBackEnd.models.TipoDocumentoBackModel;
@@ -48,7 +49,7 @@ public class UsuarioServiceBack {
 	}
 	
 //	Optional<TipoDocumentoBackModel> tipoDocumentoModel, Integer numeroDocumento
-	public ResponseModel obtenerSaldoDesdeElBack(RequestModel request) {
+	public ResponseModel obtenerSaldoDesdeElBack(RequestModel request) throws Exception {
 		
 		Integer tipoDocRequest;
 		Integer numeroDocRequest;
@@ -57,13 +58,15 @@ public class UsuarioServiceBack {
 		Optional<TipoDocumentoBackModel> tipoDocumento = Optional.ofNullable(new TipoDocumentoBackModel());
 		UsuarioBackModel usuario = new UsuarioBackModel();
 		
+		/*
         respuesta.setCode(400);
         respuesta.setStatus(false);
-        respuesta.setDescripcion("Error 400: en obtenerSaldoDesdeElBack"); 
+        respuesta.setDescripcion("Error 400: en obtenerSaldoDesdeElBack");
+        */ 
 		
 		 if( ( String.valueOf(request.getTipoDocumento() ).equals("") || request.getTipoDocumento()==null )  ||
 	        		( String.valueOf(request.getNumeroDocumento() ).equals("") || request.getNumeroDocumento()==null ) )  {
-	        	return respuesta;
+	        	throw new BadRequestException("El numero de documento y el tipo de documento no pueden estar vacio");
 			}
 		 
 		tipoDocRequest = request.getTipoDocumento();
