@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss.SSS} [%t] %-5level %c (%F:%L) - %msg%n"/>
+        </Console>
+	    <RollingFile name="LogToFile" fileName="logs/app.log" filePattern="logs/app-%d{yyyy-MM-dd}.%i.log">
+	      <PatternLayout>
+	        <Pattern>%d [%t] %-5level %c (%F:%L) - %msg%n</Pattern>
+	      </PatternLayout>
+	      <Policies>
+	        <TimeBasedTriggeringPolicy />
+	        <!-- ESTO TENES QUE MODIFICAR PARA MODIFICAR EL TAMAÑO MÁXIMO A ALMACENAR DE LOGS -->
+	        <SizeBasedTriggeringPolicy size="500 MB"/>
+	      </Policies>
+	      <DefaultRolloverStrategy max="10"/>
+	    </RollingFile>
+	</Appenders>
+    <Loggers>
+        <Logger name="ar.com.itrsa" level="debug" additivity="false">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="org.springframework.boot" level="error" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+    
+</Configuration>
