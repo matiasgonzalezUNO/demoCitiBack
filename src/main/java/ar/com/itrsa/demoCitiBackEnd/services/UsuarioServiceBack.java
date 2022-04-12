@@ -68,12 +68,13 @@ public class UsuarioServiceBack {
 		 
 		tipoDocRequest = request.getTipoDocumento();
 	    numeroDocRequest = request.getNumeroDocumento();
-	        
+	    System.out.println("El tipo doc es: " + tipoDocRequest + "El numero doc es: " + numeroDocRequest ); 
 	    tipoDocumento = tipoDocumentoBackRepository.findById(tipoDocRequest);
 	    
 		
 		usuario = usuarioBackRepository.findBytipoDocumentoAndNumeroDocumento(tipoDocumento, numeroDocRequest );
 		
+		System.out.println("El user obtenido en el back-end es: " + usuario);
         respuesta.setCode(200);
         respuesta.setStatus(true);
         respuesta.setDescripcion("el saldo del cliente es: ");
