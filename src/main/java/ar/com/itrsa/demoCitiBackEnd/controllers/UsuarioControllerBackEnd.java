@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import ar.com.itrsa.demoCitiBackEnd.exception.BadRequestException;
+import ar.com.itrsa.demoCitiBackEnd.exception.NotFoundException;
 import ar.com.itrsa.demoCitiBackEnd.models.RequestModel;
 import ar.com.itrsa.demoCitiBackEnd.models.ResponseModel;
 import ar.com.itrsa.demoCitiBackEnd.models.UsuarioBackModel;
@@ -48,7 +49,11 @@ public class UsuarioControllerBackEnd {
 		try {
 			logger.info("Obteniendo datos del usuario");
 			return usuarioServiceBack.obtenerSaldoDesdeElBack(request);
-		}catch(BadRequestException bre) {
+		}catch(NotFoundException nfe) {
+			logger.error(nfe.getMessage(), nfe);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, nfe.getMessage());
+		}
+		catch(BadRequestException bre) {
 			logger.error("Los datos enviados son incorrectos", bre);
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, bre.getMessage());
 		} 
