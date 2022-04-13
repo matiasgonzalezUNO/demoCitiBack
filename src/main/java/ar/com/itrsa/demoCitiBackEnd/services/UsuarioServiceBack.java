@@ -75,19 +75,12 @@ public class UsuarioServiceBack {
 	    System.out.println("El tipo doc es: " + tipoDocRequest + "El numero doc es: " + numeroDocRequest ); 
 
 	    tipoDocumento = tipoDocumentoBackRepository.findById(tipoDocRequest);
-
-	    logger.info("1");
 	    
 		usuario = usuarioBackRepository.findBytipoDocumentoAndNumeroDocumento(tipoDocumento, numeroDocRequest );
-
-		logger.info("2");
 		
 		if(usuario == null) {
-			logger.info("2.1");
 			throw new NotFoundException("El usuario que esta intentando obtener no existe");
 		}
-		
-		logger.info("3");
 		
 		System.out.println("El user obtenido en el back-end es: " + usuario);
         respuesta.setCode(200);
