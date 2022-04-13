@@ -55,6 +55,7 @@ private void loadTipoDocumento() {
 		
 		if (usuarioBackRepository.count() == 0) {
 			TipoDocumentoBackModel tipoDoc = tipoDocumentoBackRepository.findByNombre("DNI");
+			TipoDocumentoBackModel tipoDoc2 = tipoDocumentoBackRepository.findByNombre("LE");
 			
 			UsuarioBackModel usuarioModel1 = new UsuarioBackModel(
                     "Matias Gonzalez",
@@ -72,10 +73,20 @@ private void loadTipoDocumento() {
                     1234567890790l,
                     10000
                     );
+			
+			UsuarioBackModel usuarioModel3 = new UsuarioBackModel(
+                    "Vero Castana",
+                    "Vero@gmail.com",
+                    tipoDoc2,
+                    35222002,
+                    1234567890791l,
+                    30000
+                    );
 
 
 			usuarioBackRepository.save(usuarioModel1);
             usuarioBackRepository.save(usuarioModel2);
+            usuarioBackRepository.save(usuarioModel3);          
         }
         System.out.println(usuarioBackRepository.count());
 		

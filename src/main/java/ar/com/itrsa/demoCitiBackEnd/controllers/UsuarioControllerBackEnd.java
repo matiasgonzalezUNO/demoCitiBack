@@ -1,12 +1,14 @@
 package ar.com.itrsa.demoCitiBackEnd.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,6 +59,34 @@ public class UsuarioControllerBackEnd {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error general al obtener datos del usuario");
 		}
 		
+	}
+	
+    //-------------------------------------ABM USER -------------------
+	
+    @GetMapping( path = "/{id}")
+	public Optional<UsuarioBackModel> obtenerUsuarioPorId(@PathVariable("id") Integer id) {
+		return usuarioServiceBack.obtenerUsuarioPorId(id);
+	}
+
+	@GetMapping( path = "/query/{prioridad}")
+	public List<String> obtenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad) {
+		return usuarioServiceBack.obtenerUsuarioPorPrioridad(prioridad);
+	}
+
+	@PostMapping
+	public ResponseEntity<?> guardarUsuario (@RequestBody UsuarioBackModel usuario) {
+		usuarioServiceBack.guardarUsuario(usuario);
+        return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@DeleteMapping( path = "/{id}")
+	public String eliminarPorId(@PathVariable("id") Integer id) {
+		boolean ok = this.usuarioServiceBack.eliminarUsuario(id);
+		if(ok) {
+			return "Se elimino el usuario con id " + id ;
+		} else {
+			return "No se pudo eliminar el usuario con id " + id ;
+		}
 	}
 
 }
