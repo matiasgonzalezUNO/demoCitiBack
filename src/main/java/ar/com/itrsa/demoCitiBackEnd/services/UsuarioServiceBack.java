@@ -7,6 +7,7 @@ import ar.com.itrsa.demoCitiBackEnd.models.UsuarioBackModel;
 import ar.com.itrsa.demoCitiBackEnd.repositories.TipoDocumentoBackRepository;
 import ar.com.itrsa.demoCitiBackEnd.repositories.UsuarioBackRepository;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,4 +79,36 @@ public class UsuarioServiceBack {
         respuesta.setUsuarioBack(usuario);
 		return respuesta;
 	}
+
+    //----------------------------------------------------------
+
+    public UsuarioBackModel guardarUsuario(UsuarioBackModel user) {
+		return usuarioBackRepository.save(user);
+	}
+
+    public Optional<UsuarioBackModel> obtenerUsuarioPorId(Integer id) {
+		return usuarioBackRepository.findById(id);
+	}
+
+	public List<String> obtenerUsuarioPorPrioridad(Integer prioridad) {
+        List<UsuarioBackModel> listUsuarioBackModel = (List<UsuarioBackModel>) usuarioBackRepository.findAll();
+        List<String> listUsuarioBackPorPrioridad = new ArrayList<>();
+        for (UsuarioBackModel u : listUsuarioBackModel) {
+            listUsuarioBackPorPrioridad.add(u.getNombre());
+        }
+		return listUsuarioBackPorPrioridad;
+	}
+
+	public Boolean eliminarUsuario(Integer id) {
+        try {
+			usuarioBackRepository.deleteById(id);
+			return true;
+		}catch(Exception err){
+			System.out.println("catch Exception err: "+ err);
+			return false;
+
+		}
+
+	}
+
 }

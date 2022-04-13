@@ -10,5 +10,5 @@ import ar.com.itrsa.demoCitiBackEnd.models.UsuarioBackModel;
 public interface UsuarioBackRepository extends CrudRepository<UsuarioBackModel, Integer> {
 
 	UsuarioBackModel findBytipoDocumentoAndNumeroDocumento(Optional<TipoDocumentoBackModel> tipoDocumentoModel, Integer numeroDocumento);
-	
+
 }

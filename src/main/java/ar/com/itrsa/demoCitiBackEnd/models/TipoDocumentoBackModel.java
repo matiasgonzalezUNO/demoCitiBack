@@ -15,8 +15,7 @@ public class TipoDocumentoBackModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
 	private Integer id;
-	
-	private String nombre;
+    private String nombre;
 	private String descripcion;
 
 	public Integer getId() {
