@@ -46,7 +46,7 @@ private void loadTipoDocumento() {
            tipoDocumentoBackRepository.save(tipoDocumento3);
            tipoDocumentoBackRepository.save(tipoDocumento4);
         }
-        System.out.println(tipoDocumentoBackRepository.count());
+        //System.out.println(tipoDocumentoBackRepository.count());
 		
 		
 	}
@@ -88,7 +88,7 @@ private void loadTipoDocumento() {
             usuarioBackRepository.save(usuarioModel2);
             usuarioBackRepository.save(usuarioModel3);          
         }
-        System.out.println(usuarioBackRepository.count());
+        //System.out.println(usuarioBackRepository.count());
 		
 	}
 	
