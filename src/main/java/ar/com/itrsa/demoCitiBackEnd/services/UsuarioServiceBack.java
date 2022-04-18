@@ -3,6 +3,7 @@ package ar.com.itrsa.demoCitiBackEnd.services;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ar.com.itrsa.demoCitiBackEnd.exception.BadRequestException;
+import ar.com.itrsa.demoCitiBackEnd.exception.NotFoundException;
 import ar.com.itrsa.demoCitiBackEnd.models.RequestModel;
 import ar.com.itrsa.demoCitiBackEnd.models.ResponseModel;
 import ar.com.itrsa.demoCitiBackEnd.models.TipoDocumentoBackModel;
@@ -56,7 +57,7 @@ public class UsuarioServiceBack {
 	
 //	Optional<TipoDocumentoBackModel> tipoDocumentoModel, Integer numeroDocumento
 	public ResponseModel obtenerSaldoDesdeElBack(RequestModel request) throws Exception {
-		logger.info(1);
+
 		Integer tipoDocRequest;
 		Integer numeroDocRequest;
 		ResponseModel respuesta = new ResponseModel();
@@ -64,35 +65,24 @@ public class UsuarioServiceBack {
 		Optional<TipoDocumentoBackModel> tipoDocumento = Optional.ofNullable(new TipoDocumentoBackModel());
 		UsuarioBackModel usuario = new UsuarioBackModel();
 		
-		/*
-        respuesta.setCode(400);
-        respuesta.setStatus(false);
-        respuesta.setDescripcion("Error 400: en obtenerSaldoDesdeElBack");
-        */ 
-		logger.info(2);
 		 if( ( String.valueOf(request.getTipoDocumento() ).equals("") || request.getTipoDocumento()==null )  ||
 	        		( String.valueOf(request.getNumeroDocumento() ).equals("") || request.getNumeroDocumento()==null ) )  {
-			 logger.info(2.1);
 	        	throw new BadRequestException("El numero de documento y el tipo de documento no pueden estar vacio");
 			}
-		 
+
 		tipoDocRequest = request.getTipoDocumento();
+
 	    numeroDocRequest = request.getNumeroDocumento();
 
 	    System.out.println("El tipo doc es: " + tipoDocRequest + "El numero doc es: " + numeroDocRequest ); 
 
-	    logger.info(3);
-
 	    tipoDocumento = tipoDocumentoBackRepository.findById(tipoDocRequest);
-	    logger.info(4);
+	    
 		usuario = usuarioBackRepository.findBytipoDocumentoAndNumeroDocumento(tipoDocumento, numeroDocRequest );
-		logger.info(5);
 		
-		logger.info(usuario.getNombre());
-		logger.info(usuario.getEmail());
-		logger.info(usuario.getNumeroCuentaBancaria());
-		logger.info(usuario.getNumeroDocumento());
-		logger.info(usuario.getTipoDocumento());
+		if(usuario == null) {
+			throw new NotFoundException("El usuario que esta intentando obtener no existe");
+		}
 		
 		System.out.println("El user obtenido en el back-end es: " + usuario);
         respuesta.setCode(200);
