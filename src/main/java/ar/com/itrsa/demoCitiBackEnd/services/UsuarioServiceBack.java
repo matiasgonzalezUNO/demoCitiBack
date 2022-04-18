@@ -1,7 +1,5 @@
 package ar.com.itrsa.demoCitiBackEnd.services;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ar.com.itrsa.demoCitiBackEnd.exception.BadRequestException;
 import ar.com.itrsa.demoCitiBackEnd.exception.NotFoundException;
 import ar.com.itrsa.demoCitiBackEnd.models.RequestModel;
@@ -20,8 +18,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioServiceBack {
-
-	private static final Logger logger = LogManager.getLogger(UsuarioServiceBack.class);
 
 	@Autowired
 	UsuarioBackRepository usuarioBackRepository;

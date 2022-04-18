@@ -3,6 +3,11 @@ package ar.com.itrsa.demoCitiBackEnd.models;
 import java.io.Serializable;
 
 public class ResponseModel implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private int code;
     private boolean status;
     private String descripcion;
